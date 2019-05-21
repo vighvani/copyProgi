@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -39,7 +39,7 @@ public class AppTest extends TestCase {
 	}
 
 	/**
-	 * @Test @DisplayName("Masolas utan ugyanaz-e a ket file tartalma teszt")
+	 * @Test @DisplayName("Do the original and the copied one the same? test")
 	 */
 	public void testFajlbaMasol() throws IOException {
 		String be_utvonal = "D:\\work\\teszt.txt";
@@ -61,7 +61,7 @@ public class AppTest extends TestCase {
 	}
 
 	/**
-	 * @Test @DisplayName("Null-e a beolvasott file teszt")
+	 * @Test @DisplayName("Is the input file null? test")
 	 */
 	public void testKonzolraIr() throws IOException {
 		String be_utvonal = "D:\\work\\teszt.txt";
@@ -79,7 +79,7 @@ public class AppTest extends TestCase {
 	}
 
 	/**
-	 * @Test @DisplayName("0 parameter teszt")
+	 * @Test @DisplayName("0 parameter test")
 	 */
 	public void testNullParameter() throws IOException {
 		String[] args = new String[0];
@@ -100,7 +100,7 @@ public class AppTest extends TestCase {
 	}
 
 	/**
-	 * @Test @DisplayName("Tobb parameter teszt")
+	 * @Test @DisplayName("More parameter test")
 	 */
 	public void testMoreParameter() throws IOException {
 		String[] args = new String[3];
@@ -122,7 +122,7 @@ public class AppTest extends TestCase {
 	}
 
 	/**
-	 * @Test @DisplayName("1 paraméter teszt")
+	 * @Test @DisplayName("1 parameter test")
 	 */
 	public void testOneParameter() throws IOException {
 		String[] args = new String[1];
@@ -143,7 +143,7 @@ public class AppTest extends TestCase {
 	}
 
 	/**
-	 * @Test @DisplayName("2 paraméter teszt")
+	 * @Test @DisplayName("2 parameter test")
 	 */
 	public void testTwoParameter() throws IOException {
 		String[] args = new String[2];
