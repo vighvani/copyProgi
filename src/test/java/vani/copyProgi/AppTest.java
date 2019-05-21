@@ -17,7 +17,7 @@ import junit.framework.TestSuite;
 public class AppTest extends TestCase {
 	/**
 	 * Create the test case
-	 *
+	 * 
 	 * @param testName name of the test case
 	 */
 	public AppTest(String testName) {
@@ -41,61 +41,60 @@ public class AppTest extends TestCase {
 	/**
 	 * @Test @DisplayName("Do the original and the copied one the same? test")
 	 */
-	public void testFajlbaMasol() throws IOException {
-		String be_utvonal = "D:\\work\\teszt.txt";
-		String ki_utvonal = "D:\\work\\teszt1.txt";
-		File be_file = new File(be_utvonal);
-		File ki_file = new File(ki_utvonal);
+	public void testCopyIntoFile() throws IOException {
+		String inputPath = "D:\\work\\teszt.txt";
+		String outputPath = "D:\\work\\teszt1.txt";
+		File inputFile = new File(inputPath);
+		File outputFile = new File(outputPath);
 
 		String[] args = new String[2];
-		args[0] = be_utvonal;
-		args[1] = ki_utvonal;
+		args[0] = inputPath;
+		args[1] = outputPath;
 
 		App.main(args);
 
-		try (BufferedReader beolvas = new BufferedReader(new FileReader(be_file));
-				BufferedReader teszt_beolvas = new BufferedReader(new FileReader(ki_file));) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+				BufferedReader test_reader = new BufferedReader(new FileReader(outputFile));) {
 
-			Assert.assertEquals(beolvas.read(), teszt_beolvas.read());
+			Assert.assertEquals(reader.read(), test_reader.read());
 		}
 	}
 
 	/**
 	 * @Test @DisplayName("Is the input file null? test")
 	 */
-	public void testKonzolraIr() throws IOException {
-		String be_utvonal = "D:\\work\\teszt.txt";
-		File be_file = new File(be_utvonal);
+	public void testWriteOnConsole() throws IOException {
+		String inputPath = "D:\\work\\teszt.txt";
+		File inputFile = new File(inputPath);
 
 		String[] args = new String[1];
-		args[0] = be_utvonal;
+		args[0] = inputPath;
 
 		App.main(args);
 
-		try (BufferedReader beolvas = new BufferedReader(new FileReader(be_file));) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));) {
 
-			Assert.assertNotNull(beolvas);
+			Assert.assertNotNull(reader);
 		}
 	}
 
 	/**
 	 * @Test @DisplayName("0 parameter test")
 	 */
-	public void testNullParameter() throws IOException {
+	public void testNoParameter() throws IOException {
 		String[] args = new String[0];
-		// App.main(args);
-		String ntp = "Nem talalhato parameter!";
+
+		String npwf = "No parameter was found!";
 
 		if (args.length == 1) {
-			System.out.println("Konzolra kiir");
+			System.out.println("Written on console");
 		} else if (args.length == 2) {
-			System.out.println("Fajlba masol");
+			System.out.println("Copied to file");
 		} else {
-			System.err.println("Nem talalhato parameter!");
-			String ntp1 = "Nem talalhato parameter!";
+			System.err.println("No parameter was found!");
+			String npwf1 = "No parameter was found!";
 
-			// Assert.assertArrayEquals(ntp, ntp1);
-			Assert.assertEquals(ntp, ntp1);
+			Assert.assertEquals(npwf, npwf1);
 		}
 	}
 
@@ -104,18 +103,17 @@ public class AppTest extends TestCase {
 	 */
 	public void testMoreParameter() throws IOException {
 		String[] args = new String[3];
-		// App.main(args);
-		String ntp = "Nem talalhato parameter!";
+
+		String ntp = "No parameter was found!";
 
 		if (args.length == 1) {
-			System.out.println("Konzolra kiir");
+			System.out.println("Written on console");
 		} else if (args.length == 2) {
-			System.out.println("Fajlba masol");
+			System.out.println("Copied to file");
 		} else {
-			System.err.println("Nem talalhato parameter!");
-			String ntp1 = "Nem talalhato parameter!";
+			System.err.println("No parameter was found!");
+			String ntp1 = "No parameter was found!";
 
-			// Assert.assertArrayEquals(ntp, ntp1);
 			Assert.assertEquals(ntp, ntp1);
 		}
 
@@ -126,19 +124,18 @@ public class AppTest extends TestCase {
 	 */
 	public void testOneParameter() throws IOException {
 		String[] args = new String[1];
-		int egy = 1;
-		// App.main(args);
+		int one = 1;
 
 		if (args.length == 1) {
-			System.out.println("Konzolra kiir");
-			int egy1 = 1;
+			System.out.println("Written on console");
+			int one1 = 1;
 
-			Assert.assertSame(egy, egy1);
+			Assert.assertSame(one, one1);
 
 		} else if (args.length == 2) {
-			System.out.println("Fajlba masol");
+			System.out.println("Copied to file");
 		} else {
-			System.err.println("Nem megfelelo parameter!");
+			System.err.println("Not correct parameter!");
 		}
 	}
 
@@ -147,19 +144,18 @@ public class AppTest extends TestCase {
 	 */
 	public void testTwoParameter() throws IOException {
 		String[] args = new String[2];
-		int ketto = 2;
-		// App.main(args);
+		int two = 2;
 
 		if (args.length == 1) {
-			System.out.println("Konzolra kiir");
+			System.out.println("Written on console");
 		} else if (args.length == 2) {
-			System.out.println("Fajlba masol");
-			int ketto2 = 4;
+			System.out.println("Copied to file");
+			int two2 = 4;
 
-			Assert.assertNotSame(ketto, ketto2);
+			Assert.assertNotSame(two, two2);
 
 		} else {
-			System.err.println("Nem megfelelo parameter!");
+			System.err.println("Not correct parameter!");
 		}
 	}
 

@@ -8,71 +8,54 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
-	/*
-	 * A program olvassa be a fájl első paraméterét, mint szövegfájl, majd írja
-	 * vissza a konzolra. Ha mindkét paraméter meg van adva, akkor a másodikba írja
-	 * ki a beolvasott fájl tartalmát.
-	 */
+	public static void writeOnConsole(String[] args) {
+		String inputPath = args[0];
+		String line = null;
+		File inputFile = new File(inputPath);
 
-	public static void konzolraIr(String[] args) {
-		String be_utvonal = args[0];
-		String sor = null;
-		File be_file = new File(be_utvonal);
-
-		try (BufferedReader beolvas = new BufferedReader(new FileReader(be_file));) {
-			while ((sor = beolvas.readLine()) != null) {
-				System.out.println(sor);
+		try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));) {
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
 
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Rossz bemeneti útvonal!");
+			System.out.println("Wrong input path!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void fajlbaMasol(String[] args) {
-		String be_utvonal = args[0];
-		String ki_utvonal = args[1];
-		String sor = null;
-		File be_file = new File(be_utvonal);
-		File ki_file = new File(ki_utvonal);
-		//FileReader be = null;
-		//FileWriter ki = null;
+	public static void CopyIntoFile(String[] args) {
+		String inputPath = args[0];
+		String outputPath = args[1];
+		String line = null;
+		File inputFile = new File(inputPath);
+		File outputFile = new File(outputPath);
 
-		try (//be = new FileReader(be_file);
-			 //ki = new FileWriter(ki_file);
-				BufferedReader beolvas = new BufferedReader(new FileReader(be_file));
-				BufferedWriter kiir = new BufferedWriter(new FileWriter(ki_file, false));) {
-			while ((sor = beolvas.readLine()) != null) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile, false));) {
+			while ((line = reader.readLine()) != null) {
 				if (args.length > 1) {
-					kiir.write(sor);
-					kiir.newLine();
+					writer.write(line);
+					writer.newLine();
 				} else {
-					System.out.println(sor);
+					System.out.println(line);
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		} /*
-			 * finally { if (be != null || ki != null) { try { be.close(); ki.close(); }
-			 * catch (IOException e) { e.printStackTrace(); } } }
-			 */
+		}
 	}
 
 	public static void main(String[] args) {
 		if (args.length == 1) {
-			konzolraIr(args);
+			writeOnConsole(args);
 		} else if (args.length == 2) {
-			fajlbaMasol(args);
+			CopyIntoFile(args);
 		} else {
-			System.err.println("Nem található paraméter!");
+			System.err.println("No parameter was found!");
 		}
 	}
 }
